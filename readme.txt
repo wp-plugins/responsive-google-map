@@ -39,6 +39,10 @@ Do you have questions or issues with Responsive Google Map? Use these support ch
 == Screenshots ==
 
 1. screenshot-1.png 
+1. screenshot-2.png 
+1. screenshot-3.png 
+1. screenshot-4.png 
+1. screenshot-5.png 
 
 == Changelog ==
 

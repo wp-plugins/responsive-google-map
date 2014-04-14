@@ -1,0 +1,10 @@
+#location-canvas {height: 100%;width:100%;position: absolute;top: 0;left: 0;z-index: 0;}
+.wpcf7{border-radius:5px;border:1px solid #cccccc;position:relative;z-index: 100;width: 400px;margin: 20px auto !important;padding: 10px;background: rgba(255, 255, 255, 1);height: auto;color:black;}
+.wpcf7-form{width: 320px;position: relative;margin: 0 auto;padding: 15px 0;}
+.wpcf7-form div{position: relative;margin-bottom:10px;}
+.wpcf7-form label{margin-bottom: 0px;}
+span.wpcf7-not-valid-tip{font-size: 10px;position:absolute;top:-25px;right:0px;}
+div.wpcf7-response-output{margin-top:10px;font-size:12px;}
+.wpcf7-form-control-wrap input, .wpcf7-form-control-wrap textarea{width: 100%;}
+.wpcf7-form-control-wrap textarea{height: 100px;resize:none;}
+#om_container{position: relative;padding: 30px 0;margin: 30px 0;}

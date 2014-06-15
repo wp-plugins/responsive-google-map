@@ -1,5 +1,6 @@
 <div class="wrap">
-    <h2>Google Map Settings</h2>
+    <h2 id="gmap_title" class="gmap_title">Google Map Settings</h2>
+    
     <h2 class="om_tab nav-tab-wrapper">
         <a class="nav-tab nav-tab-active" href="#settings">Settings</a>
         <a class="nav-tab" href="#icons">Icons</a>
@@ -69,6 +70,40 @@
                         </label>
                     </td>
                 </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="marker">Draw Circle</label></th>
+                    <td>
+                        <label for="enable_marker">
+                            <?php if( isset( $options['draw_circle'] ) ): ?>
+                            <input type="checkbox" value="1" checked="" id="draw_circle" name="draw_circle">
+                            <?php else: ?>
+                            <input type="checkbox" value="1" id="draw_circle" name="draw_circle">
+                            <?php endif; ?>
+                            Draw Circle around Lat,Lng point
+                        </label>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="circlerange">Circle Range</label></th>
+                    <td>
+                        <input type="text" size="5" value="<?php echo isset($options['circle_range']) ? $options['circle_range'] : "10" ?>" name="circle_range" id="circle_range">
+                        <select name="range_unit" id="range_unit">
+                            <option value="miles">Miles</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="circlerange">Circle Background Color</label></th>
+                    <td>
+                        <input type="text" size="10" value="<?php echo isset($options['circle_bg_color']) ? $options['circle_bg_color'] : "#FF0000" ?>" name="circle_bg_color" id="circle_bg_color">
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><label for="circlerange">Circle Border Color</label></th>
+                    <td>
+                        <input type="text" size="10" value="<?php echo isset($options['circle_border_color']) ? $options['circle_border_color'] : "#FF0000" ?>" name="circle_border_color" id="circle_border_color">
+                    </td>
+                </tr>
             </tbody>
         </table>
         </div>
@@ -98,6 +133,9 @@
         </div>
         
                 
-        <p class="submit"><input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit"></p>
+        <p class="submit" style="width:150px;">
+            <input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit">
+            <span class="spinner"></span>
+        </p>
     </form>
 </div>

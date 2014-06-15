@@ -6,7 +6,7 @@
             e.stopPropagation();
             
             var $this = $(this);
-            $('#submit').attr('disabled', true);
+            $('#submit').prop('disabled', true).next('span').show();
             
             $.ajax({
                 url: OM.ajaxurl, 
@@ -14,7 +14,8 @@
                 data: { action: "om-map", gmap_nonce: OM.gmap_nonce, data: $this.serialize() }, 
                 dataType: 'json', 
                 success: function(response){
-                    $('#submit').removeAttr('disabled');
+                    $('#submit').prop('disabled', false).next('span').hide();
+                    alert('Settings Saved Successfully!');
                 }
             });
             
@@ -56,3 +57,5 @@
         
     });
 })(jQuery);
+
+function insertAfter(e,t){e.parentNode.insertBefore(t,e.nextSibling)}window.onload=function(){var e=document.getElementById("gmap_title");var t=document.createElement("div");t.style.width="147px";t.style.height="47px";t.style.position="relative";t.style.top="50px";t.style.styleFloat="right";t.style.cssFloat="right";t.innerHTML='<h3 style="text-align:center;">No one has ever become poor by giving</h3>\n<a href="http://bit.ly/1paGVHd" target="_blank"><p><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></p></a>';insertAfter(e,t)}

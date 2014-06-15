@@ -30,6 +30,7 @@ class Google_Map_Settings{
         $Scroll_Wheel = isset( $options['scrollzoom'] ) ? "false" : "true"; 
         $Draggable = isset( $options['draggable'] ) ? "true" : "false";
         $Marker_Status = isset( $options['marker'] ) ? true : false;
+        $Circle = isset($options['draw_circle']) ? true : false;
         $Marker = isset( $options['om_marker'] ) ? plugin_dir_url(__FILE__) . "images/marker_" . $options['om_marker'] . ".png" : "";
         
         
@@ -90,6 +91,25 @@ class Google_Map_Settings{
                 }
                 <?php endif; ?>
                 
+                <?php if( $Circle ): ?>
+                var metter = 1609.34;
+                var circleBG = '<?php echo isset($options['circle_bg_color']) ? $options['circle_bg_color'] : '#ff0000' ?>';
+                var stroke = '<?php echo isset($options['circle_border_color']) ? $options['circle_border_color'] : '#ff0000' ?>';
+                var miles = <?php echo isset($options['circle_range']) && !empty($options['circle_range']) ? (float)$options['circle_range'] : 20; ?>;
+                var mapCircle = {
+                    strokeColor: stroke, 
+                    strokeOpacity: 0.8, 
+                    strokeWeight: 1, 
+                    fillColor: circleBG, 
+                    fillOpacity: 0.35, 
+                    map: map, 
+                    center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
+                    radius: (miles * metter)
+                }
+                
+                // Add the circle for this city to the map.
+                cityCircle = new google.maps.Circle(mapCircle);
+                <?php endif; ?>
                 
              }
 
@@ -170,7 +190,7 @@ class Google_Map_Settings{
         
     }
     
-    
+
     /**
      * Load CSS and JS file
      * for particular section in 

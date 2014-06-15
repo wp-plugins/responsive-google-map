@@ -4,7 +4,7 @@ Donate link: http://bit.ly/1paGVHd
 Tags: responsive googlemap, google map, map, responsive
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 3.7
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,6 +17,9 @@ Responsive Google Map helping you integrate Google Map without any authenticatio
 = Docs & Support =
 
 You can find [docs](http://webomnizz.com/responsive-google-map-wordpress-plugin/). If you can't locate any topics that pertain to your particular issue, post a new topic for it.
+
+
+= Updates = 
 
 == Installation ==
 

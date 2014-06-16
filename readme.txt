@@ -3,7 +3,7 @@ Contributors: jogesh_pi
 Tags: responsive googlemap, google map, map, responsive
 Requires at least: 3.6
 Tested up to: 3.8.2
-Stable tag: 3.7
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,10 @@ Do you have questions or issues with Responsive Google Map? Use these support ch
 == Screenshots ==
 
 1. screenshot-1.png 
+1. screenshot-2.png
+1. screenshot-3.png
+1. screenshot-4.png
+1. screenshot-5.png
 
 == Changelog ==
 

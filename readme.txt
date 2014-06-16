@@ -14,12 +14,11 @@ Just another Responsive Google Map
 
 Responsive Google Map helping you integrate Google Map without any authentication key. You can independently customize the Google Map and integrate into the widget, page and post where you want.
 
-= Docs & Support =
+== Docs & Support ==
 
-You can find [docs](http://webomnizz.com/responsive-google-map-wordpress-plugin/). If you can't locate any topics that pertain to your particular issue, post a new topic for it.
-
-
-= Updates = 
+You can find [docs](http://webomnizz.com/responsive-google-map-wordpress-plugin/). If you can't locate any topics that pertain to your particular issue, post a new topic for it. You can directly use the 
+shortcode for in your widget area too. 
+**[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**
 
 == Installation ==
 
@@ -50,12 +49,28 @@ Do you have questions or issues with Responsive Google Map? Use these support ch
 
 == Changelog ==
 
-== 1.1 ==
+= 1.1 =
 * New: Now you can add circle around the location or address 
 * Fix: Small performance fixes
 
-== 1.0 ==
+= 1.0 =
 * Global settings in Settings > GMap Settings
 * New: Integrate with contact form 7
 * New: Included Infowindow to display address
 * Base Release
+
+
+== Upgrade Notice ==
+= 1.1 =
+Implementing the add radius functionality around the marker in miles. Small performance issues fixes.
+
+= 1.0 =
+Base Release
+
+
+
+== Updates == 
+1. Lightwight 
+1. No API Key required
+1. Easy to implement
+1. Can also implement in widget areas

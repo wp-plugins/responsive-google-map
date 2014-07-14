@@ -4,7 +4,7 @@
  * Plugin Name: Responsive Google MAP
  * Plugin URI: http://webomnizz.com
  * Description: Responsive Google MAP, Anywhere.
- * Version: 1.1
+ * Version: 2.0
  * Author: Jogesh Sharma
  * Text Domain: responsive-gmap
  * Author URI: http://webomnizz.com/blog
@@ -62,10 +62,23 @@
                 $d = $this->settings->str2arr( $_POST['data'] );
                 $data = array_map("urldecode", $d);
                 
-                if( ! get_option("om_gmap_settings") ){
+                // Transients API
+                if( get_transient("_om_gmap_settings") ) {
+                    // Delete last data and new
+                    delete_transient("_om_gmap_settings");
+                    
+                    // Also store in database
                     update_option( "om_gmap_settings", $data );
+                    
+                    set_transient("_om_gmap_settings", $data);
                 }
-                else { update_option( "om_gmap_settings", $data ); }
+                else {
+                    // Also store in database
+                    update_option( "om_gmap_settings", $data );
+                    
+                    set_transient("_om_gmap_settings", $data);
+                }
+                
                 
                 echo json_encode( $data );
                 
@@ -80,8 +93,9 @@
             
             
             public function gmap_srcitps(){
+                
         
-                wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
+                //wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
                 wp_register_script( "om-custom-gmap", plugin_dir_url(__FILE__) . 'js/om-gmap.js', array('jquery') );
                 
                 if( is_admin() ){

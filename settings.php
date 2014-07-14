@@ -19,32 +19,41 @@ class Google_Map_Settings{
         add_action( "wp_footer", array(&$this, "om_wpcf_styles") );
         
         
+        // Load Scripts only when shortcode apply
+        add_action("the_posts", array(&$this, 'has_gmap_stcd'));
+        
+        
     }
     
     
     public function gmap_init( $atts ){
         
-        $options = get_option('om_gmap_settings');
+        // Get Cached Data
+        if( ( $options = get_transient("_om_gmap_settings") ) === FALSE ) {
+            $options = get_option('om_gmap_settings');
+        }
         
         $Map_Type = isset($options['map_types']) ? "google.maps.MapTypeId." . strtoupper($options['map_types']) : "google.maps.MapTypeId.TERRAIN";
-        $Scroll_Wheel = isset( $options['scrollzoom'] ) ? "false" : "true"; 
-        $Draggable = isset( $options['draggable'] ) ? "true" : "false";
+        $Scroll_Wheel = isset( $options['scrollzoom'] ) ? false : true; 
+        $Draggable = isset( $options['draggable'] ) ? true : false;
         $Marker_Status = isset( $options['marker'] ) ? true : false;
         $Circle = isset($options['draw_circle']) ? true : false;
-        $Marker = isset( $options['om_marker'] ) ? plugin_dir_url(__FILE__) . "images/marker_" . $options['om_marker'] . ".png" : "";
+        $NMarker = isset( $options['om_marker'] ) ? plugin_dir_url(__FILE__) . "images/marker_" . $options['om_marker'] . ".png" : false;
         
         
         // Contact Form Stylesheet
         $this->style_string = $options['wpcf_css'];
                 
-        
+                
         extract( shortcode_atts( array(
-            'zoom'=>'9', 
+            'zoom'=>'2', 
             'lat'=>'28.9285745', 
             'lng'=>'77.09149350000007', 
+            'marker'=>'', 
             'mapHeight'=>'300', 
             'infowindow'=>'', 
-            'wpcf'=>''
+            'styles'=>''
+            //'wpcf'=>''
         ), $atts));
         
         if( !empty($infowindow) ) {
@@ -58,68 +67,32 @@ class Google_Map_Settings{
             $form = "";
         }
         
-        ?>
-        <script>
-            function initialize() {
-                var mapOptions = {
-                        zoom: <?php echo $zoom; ?>,
-                        center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),  
-                        mapTypeId: <?php echo $Map_Type; ?>, 
-                        mapTypeControl: false, 
-                        streetViewControl: false, 
-                        panControl: false,
-                        scrollwheel: <?php echo $Scroll_Wheel; ?>, 
-                        draggable: <?php echo $Draggable; ?>
-                    };
-                    
-                var contentString = '<div><?php echo $infowindow; ?></div>';
-
-                var map = new google.maps.Map(document.getElementById('location-canvas'), mapOptions);
                 
-                <?php if( $Marker_Status ): ?>
-                var marker = new google.maps.Marker({
-                                map: map,
-                                draggable: false, 
-                                <?php if( ! empty($Marker) ) { echo "icon: '{$Marker}', "; } ?>
-                                position: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>)
-                    });
-                if( contentString !== "" && contentString.length > 0 ) {
-                    var infoWindow = new google.maps.InfoWindow({ content: contentString, maxWidth: 200 });
-                    google.maps.event.addListener(marker, 'click', function(){
-                        infoWindow.open(map, marker);
-                    });
-                }
-                <?php endif; ?>
-                
-                <?php if( $Circle ): ?>
-                var metter = 1609.34;
-                var circleBG = '<?php echo isset($options['circle_bg_color']) ? $options['circle_bg_color'] : '#ff0000' ?>';
-                var stroke = '<?php echo isset($options['circle_border_color']) ? $options['circle_border_color'] : '#ff0000' ?>';
-                var miles = <?php echo isset($options['circle_range']) && !empty($options['circle_range']) ? (float)$options['circle_range'] : 20; ?>;
-                var mapCircle = {
-                    strokeColor: stroke, 
-                    strokeOpacity: 0.8, 
-                    strokeWeight: 1, 
-                    fillColor: circleBG, 
-                    fillOpacity: 0.35, 
-                    map: map, 
-                    center: new google.maps.LatLng(<?php echo $lat; ?>, <?php echo $lng; ?>),
-                    radius: (miles * metter)
-                }
-                
-                // Add the circle for this city to the map.
-                cityCircle = new google.maps.Circle(mapCircle);
-                <?php endif; ?>
-                
-             }
-
-             google.maps.event.addDomListener(window, 'resize', initialize);
-             google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
-        <?php
+        echo 'Marker: ' . $marker;
         
+        $Settings_Params = array(
+            'zoom'=>$zoom, 
+            'lat'=>$lat, 
+            'lng'=>$lng, 
+            'infoWindow'=>$infowindow, 
+            'cMarker'=>$marker, 
+            'Styles'=>$styles, 
+            'Map_Type'=>$Map_Type, 
+            'Scroll_Wheel'=>$Scroll_Wheel, 
+            'Draggable'=>$Draggable, 
+            'Marker_Status'=>$Marker_Status, 
+            'Circle'=>$Circle, 
+            'Marker'=>$NMarker, 
+            'Meter'=>1609.34, 
+            'CircleBG'=>$options['circle_bg_color'], 
+            'Stroke'=>$options['circle_border_color'], 
+            'Miles'=>$options['circle_range']
+        );
+        
+        wp_localize_script( "om_wpgmap", 'OM', $Settings_Params);
+                
         $map = "<div id='om_container'><div id='location-canvas' style='".(empty($form) ? "height:{$mapHeight}px;" : "")."width:100%;margin-bottom:30px;'></div>";
-        $map .= do_shortcode($form);
+        //$map .= do_shortcode($form);
         $map .= "</div>";
         return $map;
         
@@ -201,6 +174,7 @@ class Google_Map_Settings{
     public function admin_scripts_styles(){
         
         global $current_screen;
+        
         $Settings_Params = array(
             'ajaxurl'=>admin_url('admin-ajax.php'), 
             'gmap_nonce'=>wp_create_nonce('om_gmap_nonce')
@@ -219,6 +193,32 @@ class Google_Map_Settings{
             wp_enqueue_script( "om-settings" );
             wp_localize_script( "om-settings", 'OM', $Settings_Params);
         }
+    }
+    
+    
+    
+    function has_gmap_stcd($posts) {
+        
+        if( empty($posts) ) return $posts;
+        
+        $GM_Find = false;
+        
+        foreach( $posts as $post ) {
+            
+            if( preg_match( '/\[om_gmap/', $post->post_content ) ) {
+                $GM_Find = true;       
+            }
+            break;
+        }
+            
+        if( $GM_Find ) {   
+            wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
+            wp_register_script("om_wpgmap", plugins_url("/js/om_wpgmap.js", __FILE__), array('google-map-v2'), '1.0', true);
+            wp_enqueue_script("om_wpgmap");
+        }
+        
+        
+        return $posts;
     }
 
 

@@ -17,7 +17,7 @@
                 longname : "OM Gmap",
                 author : 'Jogesh Sharma',
                 authorurl : 'http://webomnizz.com',
-                infourl : 'http://webomnizz.com/blog',
+                infourl : 'http://webomnizz.com',
                 version : "1.0"
             };
         }
@@ -27,21 +27,47 @@
     
     $(document).ready(function(){
         
+        var styles = {'_retro':'Retro', '_blue_water':'Blue Water', '_subtle_gray':'Subtle Gray', 
+                        '_midnigh_commander':'Midnight Commander', '_light_monochrome':'Light Monochrome', 
+                        '_maps_esque':'Maps Esque', '_flat_map':'Flat Map', '_map_box':'Map Box', 
+                        '_bright_bubbly':'Bright Bubbly', '_icy_blue':'Icy Blue', '_hopper':'Hopper', '_cobalt':'Cobalt', 
+                        '_red_hues':'Red Hue', '_nature':'Nature', '_red_alert':'Red Alert', '_bluish':'Bluish', 
+                        '_blue_essence':'Blue Essence', '_souldisco':'Souldisco', '_vintage_blue':'Vintage Blue', 
+                        '_hot_pink':'Hot Pink', '_vitamin_c':'Vitamin C', '_mixed':'Mixed', '_neon_world':'Neon World', 
+                        '_muted_blue':'Muted Blue'}, 
+            options = '';
+              
+        for( var k in styles ) {
+            options += '<option value="'+k+'">'+styles[k]+'</option>';
+        }
+        
         var mapForm = '<div id="gmap-options">\n\
             <ul class="nav nav-tabs">\n\
                 <li class="active"><a href="#address" data-toggle="tab">Address</a></li>\n\
-                <li><a href="#latlng" data-toggle="tab">LatLng</a></li>';
-        if( WPCF === "y" ) {
+                <li><a href="#latlng" data-toggle="tab">LatLng</a></li>\n\
+                <li><a href="#custSettings" data-toggle="tab">Custom Settings</a></li>';
+        /*if( WPCF === "y" ) {
             mapForm += '<li><a href="#wpcf" data-toggle="tab">Contact Form</a></li>';
-        }
+        }*/
         mapForm += '</ul>\n\
             <table style="position:absolute;top:35px;right:30px;height:40px;>\n\
                 <tr>\n\
                     <td align="left">&nbsp;</td>\n\
-                    <td align="right"><input type="button" class="button button-primary button-large" value="Insert" name="map_insert" /></td>\n\
+                    <td align="right">\n\
+                        <input type="button" class="button button-primary button-large" value="Insert" name="map_insert" /></td>\n\
                 </tr>\n\
             </table>\n\
             <div class="tab-content">\n\
+                <div class="tab-pane" id="custSettings">\n\
+                    <table id="gmap-table" cellpadding="5" cellspacing="2">\n\
+                        <tr>\n\
+                            <td valign="top" width="100"><label>Marker URL:</label></td>\n\
+                            <td>\n\
+                                <input type="text" style="width:300px;" id="map_cMarker" name="map_cMarker" />\n\
+                                <p class="description" style="color:#ff0000;">Full Image URL, Best Size 22x30</p></td>\n\
+                        </tr>\n\
+                    </table>\n\
+                </div>\n\
                 <div class="tab-pane" id="latlng">\n\
                     <table id="gmap-table" cellpadding="5" cellspacing="2">\n\
                         <tr>\n\
@@ -85,6 +111,7 @@
                         </tr>\n\
                     </table>\n\
                 </div>\n\
+                <div style="position:absolute;left:40%;bottom:5%;"><h4 style="width:150px;margin:0 auto;position:relative;top:10px;text-align:center;">Please consider to making a small amount of donation.</h4><a href="http://bit.ly/1paGVHd" target="_blank"><p><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></p></a>\n\</div>\n\
             </div>\n\
         </div>';
         
@@ -121,14 +148,21 @@
                 lat = $.trim( $('#map_lat').val() ).length > 0 ? $.trim( $('#map_lat').val() ) : "28.9285745", 
                 lng = $.trim( $('#map_lng').val() ).length > 0 ? $.trim( $('#map_lng').val() ) : "77.09149350000007", 
                 infowindow = $.trim( $('#info-window-address').val() ), 
-                wpcf = $.trim($('#wpcf_shortcode').val());
+                customMarker = $.trim( $('#map_cMarker').val() ), 
+                styles = $('#map_styles').val(); 
+                //wpcf = $.trim($('#wpcf_shortcode').val());
                 
-            if( ! (/^[0-9]+$/).test(wpcf) ){
+            /*if( ! (/^[0-9]+$/).test(wpcf) ){
                 wpcf = "";
-            }
-                                
+            }*/
+            
+            var omCMD = '[om_gmap zoom="'+zoom+'" lat="'+lat+'" lng="'+lng+'" ';
+                omCMD += infowindow == "" ? "" : 'infowindow="'+infowindow+'" ';
+                omCMD += customMarker == "" ? "" : 'marker="'+customMarker+'" ';
+                omCMD += styles == "" || styles == undefined ? "" : 'styles="'+styles+'"'
+                omCMD += ']';
                 
-            tinyMCE.activeEditor.execCommand('mceInsertContent', false, '[om_gmap zoom="'+zoom+'" lat="'+lat+'" lng="'+lng+'" infowindow="'+infowindow+'" wpcf="'+wpcf+'"]');
+            tinyMCE.activeEditor.execCommand('mceInsertContent', false, omCMD);
             tb_remove();
         });
         

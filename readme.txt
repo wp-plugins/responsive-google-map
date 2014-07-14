@@ -4,7 +4,7 @@ Donate link: http://bit.ly/1paGVHd
 Tags: responsive googlemap, google map, map, responsive
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 1.1
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,16 @@ Responsive Google Map helping you integrate Google Map without any authenticatio
 = Docs & Support =
 
 You can find [docs](http://webomnizz.com/responsive-google-map-wordpress-plugin/). If you can't locate any topics that pertain to your particular issue, post a new topic for it. You can directly use the 
-shortcode for in your widget area too. 
-**[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**
+shortcode for in your widget area too.  
+
+**[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**  
+
+
+= New in version 2.0 =
+* More Flexible
+* Load JavaScript only when you use the ShortCode
+* Now You can upload Custom Marker
+
 
 = New in version 1.1 =
 * Now you can add radius around the selected lat,lat position with a selected range **from Settings > GMap settings**

@@ -4,7 +4,7 @@
  * Plugin Name: Responsive Google MAP
  * Plugin URI: http://webomnizz.com
  * Description: Responsive Google MAP, Anywhere.
- * Version: 2.0
+ * Version: 2.0.1
  * Author: Jogesh Sharma
  * Text Domain: responsive-gmap
  * Author URI: http://webomnizz.com/blog

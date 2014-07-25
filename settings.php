@@ -18,11 +18,6 @@ class Google_Map_Settings{
         add_action( "admin_enqueue_scripts", array( &$this, 'admin_scripts_styles' ) );
         add_action( "wp_footer", array(&$this, "om_wpcf_styles") );
         
-        
-        // Load Scripts only when shortcode apply
-        add_action("the_posts", array(&$this, 'has_gmap_stcd'));
-        
-        
     }
     
     
@@ -33,12 +28,13 @@ class Google_Map_Settings{
             $options = get_option('om_gmap_settings');
         }
         
+                
         $Map_Type = isset($options['map_types']) ? "google.maps.MapTypeId." . strtoupper($options['map_types']) : "google.maps.MapTypeId.TERRAIN";
         $Scroll_Wheel = isset( $options['scrollzoom'] ) ? false : true; 
         $Draggable = isset( $options['draggable'] ) ? true : false;
         $Marker_Status = isset( $options['marker'] ) ? true : false;
         $Circle = isset($options['draw_circle']) ? true : false;
-        $NMarker = isset( $options['om_marker'] ) ? plugin_dir_url(__FILE__) . "images/marker_" . $options['om_marker'] . ".png" : false;
+        $NMarker = isset( $options['om_marker'] ) && ! empty($options['om_marker']) ? plugin_dir_url(__FILE__) . "images/marker_" . $options['om_marker'] . ".png" : false;
         
         
         // Contact Form Stylesheet
@@ -59,6 +55,9 @@ class Google_Map_Settings{
         if( !empty($infowindow) ) {
             $infowindow = str_replace("/\n/g", "<br>", $infowindow);
         }
+        else {
+            $infowindow = '';
+        }
         
         if( !empty($wpcf) ) {
             $form = '[contact-form-7 id="'.$wpcf.'" title="Contact form"]';
@@ -68,8 +67,6 @@ class Google_Map_Settings{
         }
         
                 
-        echo 'Marker: ' . $marker;
-        
         $Settings_Params = array(
             'zoom'=>$zoom, 
             'lat'=>$lat, 
@@ -89,7 +86,11 @@ class Google_Map_Settings{
             'Miles'=>$options['circle_range']
         );
         
+        wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
+        wp_register_script("om_wpgmap", plugins_url("/js/om_wpgmap.js", __FILE__), array('google-map-v2'), '1.0', true);
+        wp_enqueue_script("om_wpgmap");
         wp_localize_script( "om_wpgmap", 'OM', $Settings_Params);
+        
                 
         $map = "<div id='om_container'><div id='location-canvas' style='".(empty($form) ? "height:{$mapHeight}px;" : "")."width:100%;margin-bottom:30px;'></div>";
         //$map .= do_shortcode($form);
@@ -197,33 +198,7 @@ class Google_Map_Settings{
     
     
     
-    function has_gmap_stcd($posts) {
-        
-        if( empty($posts) ) return $posts;
-        
-        $GM_Find = false;
-        
-        foreach( $posts as $post ) {
-            
-            if( preg_match( '/\[om_gmap/', $post->post_content ) ) {
-                $GM_Find = true;       
-            }
-            break;
-        }
-            
-        if( $GM_Find ) {   
-            wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
-            wp_register_script("om_wpgmap", plugins_url("/js/om_wpgmap.js", __FILE__), array('google-map-v2'), '1.0', true);
-            wp_enqueue_script("om_wpgmap");
-        }
-        
-        
-        return $posts;
-    }
-
-
-
-
+    
     /**
      * Attach GMAP button 
      * on Editor

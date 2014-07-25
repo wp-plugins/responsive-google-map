@@ -44,7 +44,7 @@ function initialize() {
     };
     
     
-    var contentString = '<div id="InfoWindowFprGoogleMap" style="width:200px;height:100px;">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit,<br>sed do eiusmod tempor incididunt ut</div>'; //'<div>'+OM.infoWindow+'</div>';
+    var contentString = '<div>'+OM.infoWindow+'</div>';
     
     var map = new google.maps.Map(document.getElementById('location-canvas'), mapOptions);
     
@@ -56,7 +56,7 @@ function initialize() {
                 position: new google.maps.LatLng(_lat, _lng)
         });
         
-        if( contentString !== "" && contentString.length > 0 ) {
+        if( OM.infoWindow !== "" ) {
             var infoWindow = new google.maps.InfoWindow();
             
             google.maps.event.addListener(marker, 'click', function(){

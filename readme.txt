@@ -22,7 +22,7 @@ shortcode for in your widget area too.
 **[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**  
 
 = New in version 2.0.2 =
-* Fix - Draggable Option not working 
+* Fix - Draggable Option issue fixed
 
 
 = New in version 2.0.1 =

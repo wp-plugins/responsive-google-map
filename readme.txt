@@ -4,7 +4,7 @@ Donate link: http://bit.ly/1paGVHd
 Tags: responsive googlemap, google map, map, responsive
 Requires at least: 3.6
 Tested up to: 3.9.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,9 +21,12 @@ shortcode for in your widget area too.
 
 **[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**  
 
+= New in version 2.0.2 =
+* Fix - Draggable Option not working 
+
 
 = New in version 2.0.1 =
-* Fix - do_shortcode('[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007"]'); not working when direct calling on page
+* Fix - **do_shortcode('[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007"]');** not working when direct calling on page
 * Fix - Some minor fix 
 
 

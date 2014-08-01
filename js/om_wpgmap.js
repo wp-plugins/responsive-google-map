@@ -39,7 +39,7 @@ function initialize() {
             streetViewControl: false,
             panControl: false,
             scrollwheel: OM.Scroll_Wheel,
-            draggable: false, 
+            draggable: OM.Draggable, 
             styles: OM.Styles === '' ? false : eval(OM.Styles)
     };
     

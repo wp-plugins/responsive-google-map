@@ -111,7 +111,7 @@
                         </tr>\n\
                     </table>\n\
                 </div>\n\
-                <div style="position:absolute;left:40%;bottom:5%;"><h4 style="width:150px;margin:0 auto;position:relative;top:10px;text-align:center;">Please consider to making a small amount of donation.</h4><a href="http://bit.ly/1paGVHd" target="_blank"><p><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></p></a>\n\</div>\n\
+                <div style="position:absolute;left:40%;bottom:5%;"><h4 style="width:150px;margin:0 auto;position:relative;top:10px;text-align:center;">Please support continued development of this plugin by making a donation.</h4><a href="http://bit.ly/1paGVHd" target="_blank"><p><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></p></a>\n\</div>\n\
             </div>\n\
         </div>';
         
@@ -170,7 +170,7 @@
             e.preventDefault();
             $(this).tab("show");
         });
-        
+                
     });
     
 })(jQuery);

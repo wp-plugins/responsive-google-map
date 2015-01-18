@@ -1,14 +1,27 @@
 <?php
 
-/*
+/**
+ * Plugin Bootsrap file
+ * 
+ * 
+ * @link http://webomnizz.com 
+ * @since 2.1
+ * @package responsive-google-map
+ * 
+ * 
+ * 
  * Plugin Name: Responsive Google MAP
  * Plugin URI: http://webomnizz.com
  * Description: Responsive Google MAP, Anywhere.
- * Version: 2.0.2
+ * Version: 2.1
  * Author: Jogesh Sharma
  * Text Domain: responsive-gmap
  * Author URI: http://webomnizz.com/blog
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Domain Path: /languages
  */
+
 
 /*
     Copyright 2014 Jogesh Sharma (email: jogesh at webomnizz.com)
@@ -27,95 +40,54 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
  */
-    
-    if( !class_exists('OM_Google_MAP') ){
-        
-        class OM_Google_MAP{
-            
-            
-            private $settings;
 
 
-            public function __construct() {
-                
-                // Enqueue Script
-                add_action( "wp_enqueue_scripts", array( &$this, "gmap_srcitps") );
-                add_filter('widget_text', 'do_shortcode');
-                
-                // Ajax Handle
-                add_action( "wp_ajax_om-map", array( &$this, "settings_handler" ) );
-                add_action( "wp_ajax_nopriv_om-map", array( &$this, "settings_handler" ) );
-                
-                // Initiate commen settings
-                require( sprintf( '%s/settings.php', dirname(__FILE__)) );
-                $this->settings = new Google_Map_Settings();
-            }
-            
-            
-            
-            public function settings_handler(){
-                
-                if( ! wp_verify_nonce( $_POST['gmap_nonce'], 'om_gmap_nonce' ) ){
-                    die('Un-trusted Request!');
-                }
-                
-                $d = $this->settings->str2arr( $_POST['data'] );
-                $data = array_map("urldecode", $d);
-                
-                // Transients API
-                if( get_transient("_om_gmap_settings") ) {
-                    // Delete last data and new
-                    delete_transient("_om_gmap_settings");
-                    
-                    // Also store in database
-                    update_option( "om_gmap_settings", $data );
-                    
-                    set_transient("_om_gmap_settings", $data);
-                }
-                else {
-                    // Also store in database
-                    update_option( "om_gmap_settings", $data );
-                    
-                    set_transient("_om_gmap_settings", $data);
-                }
-                
-                
-                echo json_encode( $data );
-                
-                die(0);
-            }
-            
-            
-            public function activate_map(){}
-            
-            
-            public function deactivate_map(){}            
-            
-            
-            public function gmap_srcitps(){
-                
-        
-                //wp_enqueue_script( "google-map-v2", "https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false" );
-                wp_register_script( "om-custom-gmap", plugin_dir_url(__FILE__) . 'js/om-gmap.js', array('jquery') );
-                
-                if( is_admin() ){
-                    wp_enqueue_script( "om-custom-gmap" );
-                }
-                
-            }
-            
-        }
-        
-    }
+// Prevent Direct Access
+if( ! defined('WPINC') ) die;
+
+   
+
+/**
+ * The code that run during plugin activation
+ */
+function activate_rgm() {
     
+    require_once plugin_dir_path(__FILE__) . 'includes/rgm-activator.php';
+    RGM_Activator::activate();
+}
+
+
+
+function deactivate_rgm() {
     
-    if( class_exists('OM_Google_MAP') ){
-        
-        // Install and Un-Install hook
-        register_activation_hook( __FILE__, array( "OM_Google_MAP", "activate_map" ));
-        register_deactivation_hook( __FILE__, array( "OM_Google_MAP", "deactivate_map" ));
-        
-        $gmap = new OM_Google_MAP();
-        
-    }
+    require_once plugin_dir_path(__FILE__) . 'includes/rgm-deactivator.php';
+    RGM_Deactivator::deactivate();
+}
+
+
+
+register_activation_hook( __FILE__, "activate_rgm");
+register_deactivation_hook( __FILE__, "deactivate_rgm");
+
+
+/**
+ * The core plugin class that is used to define internationalization
+ * 
+ */
+require_once plugin_dir_path(__FILE__) . 'includes/rgm.php';
+
+
+
+/**
+ * Begin execution of the plugin
+ * 
+ * @since 2.1
+ */
+function run_rgm() {
+    
+    $rgm = new RGM();
+    $rgm->run();
+}
+run_rgm();
+
 ?>

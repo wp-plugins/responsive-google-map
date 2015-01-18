@@ -1,16 +1,15 @@
 <div class="wrap">
-    <h2 id="gmap_title" class="gmap_title">Google Map Settings</h2>
-    
+    <h2 id="gmap_title" class="gmap_title"><?php _e("Google Map Settings", $this->plugin_name) ?></h2>
+    <br>
     <h2 class="om_tab nav-tab-wrapper">
-        <a class="nav-tab nav-tab-active" href="#settings">Settings</a>
-        <a class="nav-tab" href="#icons">Icons</a>
+        <a class="nav-tab nav-tab-active" href="#settings"><?php _e("Settings", $this->plugin_name) ?></a>
     </h2>
     <form id="gmapSettings" method="post" action="">
         <div id="settings">
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="map_types">MAP Types</label></th>
+                    <th scope="row"><label for="map_types"><?php _e("MAP Types", $this->plugin_name) ?></label></th>
                     <td>
                         <select name="map_types" id="map_types">
                             <?php
@@ -28,11 +27,11 @@
                                 }
                             ?>
                         </select>
-                        <span>Select Map Type</span>
+                        <span class="description"><?php _e("Please Select Map Type", $this->plugin_name) ?></span>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="scrollzoom">Scroll Zoom</label></th>
+                    <th scope="row"><label for="scrollzoom"><?php _e("Scroll Zoom", $this->plugin_name) ?></label></th>
                     <td>
                         <label for="users_can_register">
                             <?php if( isset($options) && $options['scrollzoom'] == "1" ): ?>
@@ -40,12 +39,12 @@
                             <?php else: ?>
                             <input type="checkbox" value="1" id="scrollzoom" name="scrollzoom">
                             <?php endif; ?>
-                            Disable zoom in/out over map.
+                            <?php _e("Disable zoom in/out over map", $this->plugin_name) ?>.
                         </label>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="scrollzoom">Drag Map</label></th>
+                    <th scope="row"><label for="scrollzoom"><?php _e("Drag Map", $this->plugin_name) ?></label></th>
                     <td>
                         <label for="users_can_register">
                             <?php if( isset( $options['draggable'] ) ): ?>
@@ -53,12 +52,12 @@
                             <?php else: ?>
                             <input type="checkbox" value="1" id="draggable" name="draggable">
                             <?php endif; ?>
-                            Enable Draggable MAP.
+                            <?php _e("Enable Draggable MAP", $this->plugin_name) ?>.
                         </label>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="marker">Enable Marker</label></th>
+                    <th scope="row"><label for="marker"><?php _e("Enable Marker", $this->plugin_name) ?></label></th>
                     <td>
                         <label for="enable_marker">
                             <?php if( isset( $options['marker'] ) ): ?>
@@ -66,12 +65,12 @@
                             <?php else: ?>
                             <input type="checkbox" value="1" id="marker" name="marker">
                             <?php endif; ?>
-                            Enable Marker on Map
+                            <?php _e("Enable Marker on Map", $this->plugin_name) ?>
                         </label>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="marker">Draw Circle</label></th>
+                    <th scope="row"><label for="marker"><?php _e("Draw Circle", $this->plugin_name) ?></label></th>
                     <td>
                         <label for="enable_marker">
                             <?php if( isset( $options['draw_circle'] ) ): ?>
@@ -79,12 +78,12 @@
                             <?php else: ?>
                             <input type="checkbox" value="1" id="draw_circle" name="draw_circle">
                             <?php endif; ?>
-                            Draw Circle around Lat,Lng point
+                            <?php _e("Draw Circle around Lat,Lng point", $this->plugin_name) ?>
                         </label>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="circlerange">Circle Range</label></th>
+                    <th scope="row"><label for="circlerange"><?php _e("Circle Range", $this->plugin_name) ?></label></th>
                     <td>
                         <input type="text" size="5" value="<?php echo isset($options['circle_range']) ? $options['circle_range'] : "10" ?>" name="circle_range" id="circle_range">
                         <select name="range_unit" id="range_unit">
@@ -93,13 +92,13 @@
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="circlerange">Circle Background Color</label></th>
+                    <th scope="row"><label for="circlerange"><?php _e("Circle Background Color", $this->plugin_name) ?></label></th>
                     <td>
                         <input type="text" size="10" value="<?php echo isset($options['circle_bg_color']) ? $options['circle_bg_color'] : "#FF0000" ?>" name="circle_bg_color" id="circle_bg_color">
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><label for="circlerange">Circle Border Color</label></th>
+                    <th scope="row"><label for="circlerange"><?php _e("Circle Border Color", $this->plugin_name) ?></label></th>
                     <td>
                         <input type="text" size="10" value="<?php echo isset($options['circle_border_color']) ? $options['circle_border_color'] : "#FF0000" ?>" name="circle_border_color" id="circle_border_color">
                     </td>
@@ -107,31 +106,7 @@
             </tbody>
         </table>
         </div>
-        
-        <div id="icons">
-            <table class="form-table">
-                <tr valign="top">
-                    <th scope="row"><label for="scrollzoom">Marker List(s)</label></th>
-                    <td>
-                        <div class="map_markers">
-                            <ul>
-                                <li>
-                                    <div class="marker <?php echo isset( $options['om_marker'] ) && $options['om_marker'] == "1" ? "active" : ""; ?>">
-                                        <img src="<?php echo $GMAP_DIR; ?>images/marker_1.png" />
-                                        <?php if( isset( $options['om_marker'] ) && $options['om_marker'] == "1" ): ?>
-                                        <input type="radio" style="display:none;" checked="" value="1" name="om_marker"/>
-                                        <?php else: ?>
-                                        <input type="radio" style="display:none;" value="1" name="om_marker"/>
-                                        <?php endif; ?>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
+                
                 
         <p class="submit" style="width:150px;">
             <input type="submit" value="Save Changes" class="button button-primary" id="submit" name="submit">

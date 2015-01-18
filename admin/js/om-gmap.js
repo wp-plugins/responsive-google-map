@@ -46,9 +46,7 @@
                 <li class="active"><a href="#address" data-toggle="tab">Address</a></li>\n\
                 <li><a href="#latlng" data-toggle="tab">LatLng</a></li>\n\
                 <li><a href="#custSettings" data-toggle="tab">Custom Settings</a></li>';
-        /*if( WPCF === "y" ) {
-            mapForm += '<li><a href="#wpcf" data-toggle="tab">Contact Form</a></li>';
-        }*/
+        
         mapForm += '</ul>\n\
             <table style="position:absolute;top:35px;right:30px;height:40px;>\n\
                 <tr>\n\
@@ -97,16 +95,6 @@
                             <td width="160" valign="top"><label>Info Window</label></td>\n\
                             <td>\n\
                                 <textarea style="resize:none;" row="6" cols="40" name="info-window-address" id="info-window-address"></textarea>\n\
-                            </td>\n\
-                        </tr>\n\
-                    </table>\n\
-                </div>\n\
-                <div class="tab-pane" id="wpcf">\n\
-                    <table id="gmap-address" cellpadding="5" cellspacing="2">\n\
-                        <tr>\n\
-                            <td width="160" valign="top"><label>Contact form Shortcode ID:</label></td>\n\
-                            <td>\n\
-                                <input type="text" size="5" name="wpcf_shortcode" id="wpcf_shortcode"> <span style="position: absolute; left: 270px; overflow: hidden; width: 75px;"><img src="//'+document.location.hostname+'/wp-content/plugins/responsive-google-map/images/contact_form_id.png"></span>\n\
                             </td>\n\
                         </tr>\n\
                     </table>\n\

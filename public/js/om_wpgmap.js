@@ -37,7 +37,7 @@ function initialize() {
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             streetViewControl: false,
-            panControl: false,
+            panControl: true,
             scrollwheel: OM.Scroll_Wheel,
             draggable: OM.Draggable, 
             styles: OM.Styles === '' ? false : eval(OM.Styles)
@@ -47,6 +47,9 @@ function initialize() {
     var contentString = '<div>'+OM.infoWindow+'</div>';
     
     var map = new google.maps.Map(document.getElementById('location-canvas'), mapOptions);
+    var mH = document.getElementById('location-canvas').offsetHeight;
+    //document.getElementById('om_container').style.height = mH+"px";
+    
     
     if( OM.Marker_Status ) {
         var marker = new google.maps.Marker({

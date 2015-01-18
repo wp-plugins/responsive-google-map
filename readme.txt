@@ -3,8 +3,8 @@ Contributors: jogesh_pi
 Donate link: http://bit.ly/1paGVHd
 Tags: responsive googlemap, google map, map, responsive
 Requires at least: 3.6
-Tested up to: 3.9.1
-Stable tag: 2.0.2
+Tested up to: 4.1
+Stable tag: 2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,11 @@ You can find [docs](http://webomnizz.com/responsive-google-map-wordpress-plugin/
 shortcode for in your widget area too.  
 
 **[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**  
+
+= New in version 2.1 = 
+* Fix - In Some cases Map was overlap with post/page content.
+* Add - New attribute to control height of the map [om_gmap zoom="9" lat="28.9285745" height="300" lng="77.09149350000007" infowindow=""]
+
 
 = New in version 2.0.2 =
 * Fix - Draggable Option issue fixed

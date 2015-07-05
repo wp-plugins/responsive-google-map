@@ -202,6 +202,8 @@ class RGM_Admin {
         
             if( is_admin() && $pagenow == "post.php" || $pagenow == "post-new.php" ){
                 $plugin_array['omgmap'] = plugin_dir_url(__FILE__) . '/js/om-gmap.js';
+                
+                include_once plugin_dir_path( dirname(__FILE__) ).'admin/template/rgm-editor.php';
                 return $plugin_array;
             }
         }

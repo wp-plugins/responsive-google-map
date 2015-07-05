@@ -1,14 +1,14 @@
 === Responsive Google Map ===
 Contributors: jogesh_pi
 Donate link: http://bit.ly/1paGVHd
-Tags: responsive googlemap, google map, map, responsive
+Tags: responsive google map, google map, map, responsive, google map styles, map styles, wordpress googla map
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 2.1
+Tested up to: 4.2.2
+Stable tag: 2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Just another Responsive Google Map
+Just another Responsive Google Map, 24 beautiful map styles with latest version.
 
 == Description ==
 
@@ -21,29 +21,20 @@ shortcode for in your widget area too.
 
 **[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007" infowindow=""]**  
 
-= New in version 2.1 = 
-* Fix - In Some cases Map was overlap with post/page content.
-* Add - New attribute to control height of the map [om_gmap zoom="9" lat="28.9285745" height="300" lng="77.09149350000007" infowindow=""]
+
+= New in version 2.2 =
+* Add - 24 new amazing map styles
+* Upgrade - Upgraded UI from tabs to single section.
 
 
-= New in version 2.0.2 =
-* Fix - Draggable Option issue fixed
+= Supported Languages of Responsive Google Map = 
+*If you need language of **Responsive Google Map** which is not included in this list, please contact us and we will do the translation of Responsive Google Map as soon as we hear from you.*
 
+* Serbian (sr_RS)
 
-= New in version 2.0.1 =
-* Fix - **do_shortcode('[om_gmap zoom="9" lat="28.9285745" lng="77.09149350000007"]');** not working when direct calling on page
-* Fix - Some minor fix 
+= Translation Credit =
 
-
-= New in version 2.0 =
-* More Flexible
-* Load JavaScript only when you use the ShortCode
-* Now You can upload Custom Marker
-
-
-= New in version 1.1 =
-* Now you can add radius around the selected lat,lat position with a selected range **from Settings > GMap settings**
-* Small performance fixes
+Many thanks to *[webhostinggeeks](https://webhostinggeeks.com/)*
 
 == Installation ==
 

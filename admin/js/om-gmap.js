@@ -35,75 +35,14 @@
                         '_blue_essence':'Blue Essence', '_souldisco':'Souldisco', '_vintage_blue':'Vintage Blue', 
                         '_hot_pink':'Hot Pink', '_vitamin_c':'Vitamin C', '_mixed':'Mixed', '_neon_world':'Neon World', 
                         '_muted_blue':'Muted Blue'}, 
-            options = '';
+            options = '<option>-- Select --</option>';
               
         for( var k in styles ) {
             options += '<option value="'+k+'">'+styles[k]+'</option>';
         }
         
-        var mapForm = '<div id="gmap-options">\n\
-            <ul class="nav nav-tabs">\n\
-                <li class="active"><a href="#address" data-toggle="tab">Address</a></li>\n\
-                <li><a href="#latlng" data-toggle="tab">LatLng</a></li>\n\
-                <li><a href="#custSettings" data-toggle="tab">Custom Settings</a></li>';
         
-        mapForm += '</ul>\n\
-            <table style="position:absolute;top:35px;right:30px;height:40px;>\n\
-                <tr>\n\
-                    <td align="left">&nbsp;</td>\n\
-                    <td align="right">\n\
-                        <input type="button" class="button button-primary button-large" value="Insert" name="map_insert" /></td>\n\
-                </tr>\n\
-            </table>\n\
-            <div class="tab-content">\n\
-                <div class="tab-pane" id="custSettings">\n\
-                    <table id="gmap-table" cellpadding="5" cellspacing="2">\n\
-                        <tr>\n\
-                            <td valign="top" width="100"><label>Marker URL:</label></td>\n\
-                            <td>\n\
-                                <input type="text" style="width:300px;" id="map_cMarker" name="map_cMarker" />\n\
-                                <p class="description" style="color:#ff0000;">Full Image URL, Best Size 22x30</p></td>\n\
-                        </tr>\n\
-                    </table>\n\
-                </div>\n\
-                <div class="tab-pane" id="latlng">\n\
-                    <table id="gmap-table" cellpadding="5" cellspacing="2">\n\
-                        <tr>\n\
-                            <td width="100"><label>Zoom:</label></td>\n\
-                            <td><input type="text" size="5" id="map_zoom" name="map_zoom" value="9" /></td>\n\
-                        </tr>\n\
-                        <tr>\n\
-                            <td><label>Lat:</label></td>\n\
-                            <td><input type="text" size="20" id="map_lat" name="map_lat" value="" /></td>\n\
-                        </tr>\n\
-                        <tr>\n\
-                            <td><label>Lng:</label></td>\n\
-                            <td><input type="text" size="20" id="map_lng" name="map_lng" value="" /></td>\n\
-                        </tr>\n\
-                    </table>\n\
-                </div>\n\
-                <div class="tab-pane active" id="address">\n\
-                    <table id="gmap-address" cellpadding="5" cellspacing="2">\n\
-                        <tr>\n\
-                            <td width="160"><label>Enter your address:</label></td>\n\
-                            <td>\n\
-                                <input size="30" type="text" name="map-address" id="map-address" />\n\
-                                <input type="button" class="button" value="Get Lat Lng" id="get_latlng" name="get_latlng" />\n\
-                            </td>\n\
-                        </tr>\n\
-                        <tr>\n\
-                            <td width="160" valign="top"><label>Info Window</label></td>\n\
-                            <td>\n\
-                                <textarea style="resize:none;" row="6" cols="40" name="info-window-address" id="info-window-address"></textarea>\n\
-                            </td>\n\
-                        </tr>\n\
-                    </table>\n\
-                </div>\n\
-                <div style="position:absolute;left:40%;bottom:5%;"><h4 style="width:150px;margin:0 auto;position:relative;top:10px;text-align:center;">Please support continued development of this plugin by making a donation.</h4><a href="http://bit.ly/1paGVHd" target="_blank"><p><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"></p></a>\n\</div>\n\
-            </div>\n\
-        </div>';
-        
-        $(mapForm).appendTo('body').hide();
+        $('#rgm_styles').html( options );
         
         $('#get_latlng').click(function(e){
             e.preventDefault();
@@ -137,13 +76,9 @@
                 lng = $.trim( $('#map_lng').val() ).length > 0 ? $.trim( $('#map_lng').val() ) : "77.09149350000007", 
                 infowindow = $.trim( $('#info-window-address').val() ), 
                 customMarker = $.trim( $('#map_cMarker').val() ), 
-                styles = $('#map_styles').val(); 
-                //wpcf = $.trim($('#wpcf_shortcode').val());
+                styles = $('#rgm_styles').val(); 
                 
-            /*if( ! (/^[0-9]+$/).test(wpcf) ){
-                wpcf = "";
-            }*/
-            
+                
             var omCMD = '[om_gmap zoom="'+zoom+'" lat="'+lat+'" lng="'+lng+'" ';
                 omCMD += infowindow == "" ? "" : 'infowindow="'+infowindow+'" ';
                 omCMD += customMarker == "" ? "" : 'marker="'+customMarker+'" ';
@@ -153,12 +88,7 @@
             tinyMCE.activeEditor.execCommand('mceInsertContent', false, omCMD);
             tb_remove();
         });
-        
-        $('#myTab a').click(function(e){
-            e.preventDefault();
-            $(this).tab("show");
-        });
-                
+            
     });
     
 })(jQuery);

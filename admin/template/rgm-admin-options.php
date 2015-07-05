@@ -9,7 +9,7 @@
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><label for="map_types"><?php _e("MAP Types", $this->plugin_name) ?></label></th>
+                    <th scope="row"><label for="map_types"><?php _e("MAP Types", $this->plugin_name); ?></label></th>
                     <td>
                         <select name="map_types" id="map_types">
                             <?php

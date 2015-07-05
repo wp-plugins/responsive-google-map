@@ -6,10 +6,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Package Name\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-18 11:17+0530\n"
-"PO-Revision-Date: 2015-01-18 11:17+0500\n"
+"POT-Creation-Date: 2015-07-05 12:52+0530\n"
+"PO-Revision-Date: 2015-07-05 12:57+0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -21,68 +21,108 @@ msgstr ""
 
 #: admin/rgm-admin.php:121
 msgid "Google Map Options"
-msgstr ""
+msgstr "Google Map Options"
 
 #: admin/rgm-admin.php:121
 msgid "GMap Settings"
-msgstr ""
+msgstr "GMap Settings"
 
 #: admin/template/rgm-admin-options.php:2
 msgid "Google Map Settings"
-msgstr ""
+msgstr "Google Map Settings"
 
 #: admin/template/rgm-admin-options.php:5
 msgid "Settings"
-msgstr ""
+msgstr "Settings"
 
 #: admin/template/rgm-admin-options.php:12
 msgid "MAP Types"
-msgstr ""
+msgstr "MAP Types"
 
 #: admin/template/rgm-admin-options.php:30
 msgid "Please Select Map Type"
-msgstr ""
+msgstr "Please Select Map Type"
 
 #: admin/template/rgm-admin-options.php:34
 msgid "Scroll Zoom"
-msgstr ""
+msgstr "Scroll Zoom"
 
 #: admin/template/rgm-admin-options.php:42
 msgid "Disable zoom in/out over map"
-msgstr ""
+msgstr "Disable zoom in/out over map"
 
 #: admin/template/rgm-admin-options.php:47
 msgid "Drag Map"
-msgstr ""
+msgstr "Drag Map"
 
 #: admin/template/rgm-admin-options.php:55
 msgid "Enable Draggable MAP"
-msgstr ""
+msgstr "Enable Draggable MAP"
 
 #: admin/template/rgm-admin-options.php:60
 msgid "Enable Marker"
-msgstr ""
+msgstr "Enable Marker"
 
 #: admin/template/rgm-admin-options.php:68
 msgid "Enable Marker on Map"
-msgstr ""
+msgstr "Enable Marker on Map"
 
 #: admin/template/rgm-admin-options.php:73
 msgid "Draw Circle"
-msgstr ""
+msgstr "Draw Circle"
 
 #: admin/template/rgm-admin-options.php:81
 msgid "Draw Circle around Lat,Lng point"
-msgstr ""
+msgstr "Draw Circle Around Lat,Lng poing"
 
 #: admin/template/rgm-admin-options.php:86
 msgid "Circle Range"
-msgstr ""
+msgstr "Circle Range"
 
 #: admin/template/rgm-admin-options.php:95
 msgid "Circle Background Color"
-msgstr ""
+msgstr "Circle Background Color"
 
 #: admin/template/rgm-admin-options.php:101
 msgid "Circle Border Color"
-msgstr ""
+msgstr "Circle Border Color"
+
+#: admin/template/rgm-editor.php:6
+msgid "Enter Your Address"
+msgstr "Enter Your Address"
+
+#: admin/template/rgm-editor.php:15
+msgid "OR"
+msgstr "OR"
+
+#: admin/template/rgm-editor.php:19
+msgid "Lat"
+msgstr "Lat"
+
+#: admin/template/rgm-editor.php:23
+msgid "Lng"
+msgstr "Lng"
+
+#: admin/template/rgm-editor.php:28
+msgid "Info Window"
+msgstr "Info Window"
+
+#: admin/template/rgm-editor.php:32
+msgid "Marker URL"
+msgstr "Marker URL"
+
+#: admin/template/rgm-editor.php:34
+msgid "Full Image URL, Best Size 22x30"
+msgstr "Full Image URL, Best Size 22x30"
+
+#: admin/template/rgm-editor.php:41
+msgid "Zoom"
+msgstr "Zoom"
+
+#: admin/template/rgm-editor.php:45
+msgid "Styles"
+msgstr "Styles"
+
+#: admin/template/rgm-editor.php:51
+msgid "Insert Map"
+msgstr "Insert Map"

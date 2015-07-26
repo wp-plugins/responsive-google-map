@@ -35,7 +35,7 @@
                         '_blue_essence':'Blue Essence', '_souldisco':'Souldisco', '_vintage_blue':'Vintage Blue', 
                         '_hot_pink':'Hot Pink', '_vitamin_c':'Vitamin C', '_mixed':'Mixed', '_neon_world':'Neon World', 
                         '_muted_blue':'Muted Blue'}, 
-            options = '<option>-- Select --</option>';
+            options = '<option value="">-- Select --</option>';
               
         for( var k in styles ) {
             options += '<option value="'+k+'">'+styles[k]+'</option>';
